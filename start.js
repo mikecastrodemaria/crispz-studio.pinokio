@@ -5,7 +5,12 @@ module.exports = {
       method: "shell.run",
       params: {
         venv: "env",
-        env: { },
+        // Force UTF-8 stdout/stderr so tqdm download progress bars don't crash
+        // on Windows consoles using the legacy cp1252 codec (UnicodeEncodeError).
+        env: {
+          PYTHONUTF8: "1",
+          PYTHONIOENCODING: "utf-8"
+        },
         path: "app",
         message: [
           "python app.py"

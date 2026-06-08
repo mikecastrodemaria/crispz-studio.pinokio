@@ -1,18 +1,24 @@
 module.exports = {
   run: [
-    // Update the launcher repo
+    // Force-update the launcher repo to exactly match its origin (main)
     {
       method: "shell.run",
       params: {
-        message: "git pull"
+        message: [
+          "git fetch origin",
+          "git reset --hard origin/main"
+        ]
       }
     },
-    // Update crispz-studio itself
+    // Force-update crispz-studio (app) to exactly match its origin (main)
     {
       method: "shell.run",
       params: {
         path: "app",
-        message: "git pull"
+        message: [
+          "git fetch origin",
+          "git reset --hard origin/main"
+        ]
       }
     },
     // Refresh dependencies (in case requirements changed)

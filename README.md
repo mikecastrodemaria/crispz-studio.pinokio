@@ -32,8 +32,11 @@ CLI + persistent server. See the app repo for full docs.
 
 ## Optional: Face Swap & Ollama
 
-- **Face Swap** needs extra deps + an inswapper model — see the app's
-  `requirements-faceswap.txt` and README (not installed by default).
+- **Face Swap**: the Python deps (`insightface` + the ONNX runtime matching your GPU)
+  are now installed by Install/Update automatically. The **inswapper model is NOT
+  downloaded** (its weights are not redistributable): drop `inswapper_128.onnx` into
+  `app/faceswap/`, or set `faceswap_model_path` / `faceswap_model_url` in the app's
+  `config.txt`. Until then the tab reports `inswapper model not found`.
 - **Describe / Improve / Vision Mix** need a local [Ollama](https://ollama.com)
   with a vision model (e.g. `llava`, `qwen-vl`).
 
